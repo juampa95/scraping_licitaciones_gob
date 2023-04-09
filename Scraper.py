@@ -15,8 +15,7 @@ options.add_argument('headless')
 driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
 
 driver.get("https://comprar.gob.ar/BuscarAvanzado.aspx")
-# final = pd.DataFrame()
-# tiempos = pd.DataFrame(columns=['iteracion','tiempo_ejecucion'])
+
 for iteracion in range(1000):
     # Vamos a hacer un diccionario, que tenga el valor del numero de proceso buscado por si el script falla
     n_proceso = {'NumProcesoIndice':df['Número de Proceso'][iteracion]}
@@ -120,8 +119,7 @@ for iteracion in range(1000):
         except:
             pass
 
-        # unimos todo en un diccionario para luego concatenarlo en un dataframe
-            # quiza no sea necesario esto. Podria guardar los diccionarios en pickles directamente
+        # unimos todo en un diccionario para luego agergarlo al archivo json que contiene toda la info
 
         dict_final = {}
         end_time = time.time()
@@ -129,9 +127,7 @@ for iteracion in range(1000):
         for d in [n_proceso,tiempo,datos,crono,filas_datos,ofer]:
             dict_final.update(d)
         dict_list = [dict_final]
-        # final = pd.concat([final,pd.DataFrame(dict_list)])
-        # tiempos.loc[len(tiempos)] = [iteracion,(end_time-start_time)]
-        # print(f'Iteracion N°: {iteracion} completada. Tiempo de ejecucion {end_time-start_time}segundos')
+
     except:
         dict_final = n_proceso
 
@@ -155,7 +151,6 @@ for iteracion in range(1000):
     except:
         pass
 
-with open('datos.json', 'r') as f:
-    datos = pd.read_json(f)
-
-# Imprimir el DataFrame
+# Estas lineas son para ver el dataframe
+# with open('datos.json', 'r') as f:
+#     datos = pd.read_json(f)
