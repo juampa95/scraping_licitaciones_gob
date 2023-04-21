@@ -1,3 +1,4 @@
+import datetime
 import time
 import json
 import pickle
@@ -9,14 +10,14 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 
 df = pd.read_csv('D:/gitProyects/licitacionesEstatales-ds/ReporteProcesos.csv')
-
+archivo = datetime.datetime.now().strftime('%d%m%Y') + '.json'
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
 
 driver.get("https://comprar.gob.ar/BuscarAvanzado.aspx")
 
-for iteracion in range(1001, 2000):
+for iteracion in range(2000, 3000):
     # Vamos a hacer un diccionario, que tenga el valor del numero de proceso buscado por si el script falla
     n_proceso = {'NumProcesoIndice':df['Número de Proceso'][iteracion]}
     try:
@@ -134,15 +135,15 @@ for iteracion in range(1001, 2000):
     # AGREGADO EN JSON LUEGO DE CADA ITERACION
 
     try:
-        with open('datos.json', 'r') as f:
+        with open(archivo, 'r') as f:
             datos_guardados = json.load(f)
     except FileNotFoundError:
         datos_guardados = []
-        with open('datos.json', 'w') as f:
+        with open(archivo, 'w') as f:
             json.dump(datos_guardados, f)
     datos_guardados.append(dict_final)
 
-    with open('datos.json', "w") as f:
+    with open(archivo, "w") as f:
         json.dump(datos_guardados, f,ensure_ascii=False, indent=4)
 
     try:
