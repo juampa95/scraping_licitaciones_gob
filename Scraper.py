@@ -17,7 +17,7 @@ driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
 
 driver.get("https://comprar.gob.ar/BuscarAvanzado.aspx")
 count  = 0
-for iteracion in range(5000, 6000):
+for iteracion in range(6282, 7000):
     # Vamos a hacer un diccionario, que tenga el valor del numero de proceso buscado por si el script falla
     n_proceso = {'NumProcesoIndice':df['Número de Proceso'][iteracion]}
     try:
