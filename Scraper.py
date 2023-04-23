@@ -16,8 +16,8 @@ options.add_argument('headless')
 driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
 
 driver.get("https://comprar.gob.ar/BuscarAvanzado.aspx")
-
-for iteracion in range(3000, 4000):
+count  = 0
+for iteracion in range(5000, 6000):
     # Vamos a hacer un diccionario, que tenga el valor del numero de proceso buscado por si el script falla
     n_proceso = {'NumProcesoIndice':df['Número de Proceso'][iteracion]}
     try:
@@ -147,10 +147,11 @@ for iteracion in range(3000, 4000):
         json.dump(datos_guardados, f,ensure_ascii=False, indent=4)
 
     try:
-        if iteracion % 100 == 0:
-            print(f'...........[{iteracion/10}%] completado...................')
+        if count % 10 == 0:
+            print(f'.......Iteración [{count}] completa {datetime.datetime.now().strftime("%H:%M")}...................')
     except:
         pass
+    count = count + 1
 
 # Estas lineas son para ver el dataframe
 # with open('datos.json', 'r') as f:
