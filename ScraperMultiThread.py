@@ -171,6 +171,7 @@ def scrape_multi_thread(item_codes, file):
     :return: json final con los datos agregados
     """
     lock = Lock()
+    contador = 0
     # Creamos el ejecutor de multiples hilos, 8 en este caso
     with ThreadPoolExecutor(max_workers=8) as executor:
         futures = {executor.submit(scrape_item, code): code for code in item_codes}
@@ -179,6 +180,9 @@ def scrape_multi_thread(item_codes, file):
             try:
                 dict_final = proceso.result()
                 write_results(dict_final, file, lock)
+                if contador % 10 == 0:
+                    print(f'elemento {contador} procesado {datetime.datetime.now().strftime("%H:%M")}')
+                contador = contador + 1
             except Exception as e:
                 print(f'fallo en item {e} ')
 
@@ -187,11 +191,16 @@ items_df = pd.read_csv('D:/gitProyects/licitacionesEstatales-ds/ReporteProcesos.
 item_codes = items_df['Número de Proceso'].tolist()
 
 # Creamos el archivo que va a tener todos los datos, cuyo nombre es el dia
-file = datetime.datetime.now().strftime('%d%m%Y') + '.json'
+file = datetime.datetime.now().strftime('%d%m%Y') +'multi'+ '.json'
 
 # Ejeecutamos la funcion.
 # ----------------- COLOCAR DESDE DONDE HASTA DONDE EN LA LISTA ------------------
-scrape_multi_thread(item_codes[:50], file)
+scrape_multi_thread(item_codes[27000:30000], file)
+
+
+# LLEGO HASTA 4470 -> proxima empezar de 21470 aprox
+# en archivo 25042023multi2 hay muchos errores. Muchos tardaron hasta 300 seg en ejecutarse con 12 hilos
+# Quiza fue una saturacion de consultas o quiza el problema fueron los recursos compartidos. VER
 
 
 # # Estas lineas son para ver el dataframe

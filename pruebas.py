@@ -1,16 +1,15 @@
-# This is a sample Python script.
+import pandas as pd
 
-# Press Mayús+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Estas lineas son para ver el dataframe
+with open('Data/23042023multi.json', 'r') as f:
+    datos = pd.read_json(f)
 
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+datos.head()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# No hay ninguno duplicado.
 
+datos['NumProcesoIndice'].duplicated().sum()
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+datos.describe(include='all').T['freq'].sort_values(ascending=False)[0:30]
