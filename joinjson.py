@@ -27,3 +27,9 @@ df.duplicated(subset=['NumProcesoIndice'], keep=False).sum()
 
 lic = df.copy()
 lic = lic.drop_duplicates(subset=['NumProcesoIndice'], keep='first')
+
+lic['tiempo_scraping'].isnull().sum()
+
+nulos = lic[lic['tiempo_scraping'].isnull()]
+
+nulos.shape
