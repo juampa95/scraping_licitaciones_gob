@@ -195,10 +195,9 @@ file = datetime.datetime.now().strftime('%d%m%Y') +'multi'+ '.json'
 
 # Ejeecutamos la funcion.
 # ----------------- COLOCAR DESDE DONDE HASTA DONDE EN LA LISTA ------------------
-scrape_multi_thread(item_codes[27000:30000], file)
+scrape_multi_thread(item_codes[47700:], file)
 
 
-# LLEGO HASTA 4470 -> proxima empezar de 21470 aprox
 # en archivo 25042023multi2 hay muchos errores. Muchos tardaron hasta 300 seg en ejecutarse con 12 hilos
 # Quiza fue una saturacion de consultas o quiza el problema fueron los recursos compartidos. VER
 
@@ -210,3 +209,4 @@ scrape_multi_thread(item_codes[27000:30000], file)
 # pd.set_option('display.max_columns', None)
 # pd.set_option('display.width', None)
 # datos.head()
+# len(item_codes)
