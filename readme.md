@@ -46,25 +46,26 @@ puede verse en el archivo [ScraperMultiThread.py](ScraperMultiThread.py).
 Los resultados arrojados por este, son compatibles con la Versión 1.0
 
 Para acceder a una pequeña muestra de los datos obtenidos pueden ingresar al archivo haciendo click
-en el link: [datos_iniciales.json](datos_iniciales.json) o pueden buscarlo en el repositorio. 
+en el link: [muestra.json](muestra.json) o pueden buscar el archivo [datos_iniciales.json](datos_iniciales.json)
+que deberán descargar, ya que es demasiado grande para visualizarlo en github.
 
 El archivo final con todos los datos recolectados tiene un tamaño de mas de 130 MB.
 Conteniendo información sobre 55.823 procesos licitatorios, con una cantidad de 520 columnas.
 
 ### Proximos pasos
 
--   Analizar datos, detectar nulos y ver si es posible o necesario volver a raspar esos proceesos
-- Determinar el objetivo del proyecto. Que quiero predecir, con que exactitud y en función de esto
-definir que tipo de modelos voy a utilizar y con que metricas los voy a evaluar. 
-- Determinar de que forma se van a splitear los datos. Cada proceso licitatorio cuenta con 
-diferentes empresas que presentaron distintas ofertas para la misma licitación. En funcion de eso
-podria transformar cada fila, obteniendo información sobre quien gano la licitación y quien no.
+-[x]   Analizar datos, detectar nulos y ver si es posible o necesario volver a raspar esos procesos
+-[ ] Determinar el objetivo del proyecto. Que quiero predecir, con que exactitud y en función de esto
+definir que tipo de modelos voy a utilizar y con que métricas los voy a evaluar. 
+-[ ] Determinar de que forma se van a splitear los datos. Cada proceso licitatorio cuenta con 
+diferentes empresas que presentaron distintas ofertas para la misma licitación. En función de eso
+podría transformar cada fila, obteniendo información sobre quien gano la licitación y quien no.
 De esta forma puedo analizar, características, precios, etc. de ambos tipos de empresa.
-- Entrenar modelos, medir resultados, optimizar hiperparámetros.
-- Una vez que se tenga un MVP podemos volver a utilizar el scraper para obtener nuevos procesos 
+-[ ] Entrenar modelos, medir resultados, optimizar hiperparámetros.
+-[ ] Una vez que se tenga un MVP podemos volver a utilizar el scraper para obtener nuevos procesos 
 licitatorios y comparar resultados para ver que tan exacto es nuestro modelo.
-- En un futuro, dependiendo de que tipos de resultados arrjoe el modelo, será posible
-obtener informacion de licitaciones en proceso, que aun no han sido adjudicadas, para predecir
+-[ ] En un futuro, dependiendo de que tipos de resultados arroje el modelo, será posible
+obtener información de licitaciones en proceso, que aún no han sido adjudicadas, para predecir
 el resultado de alguno de los parámetros.
 
 
