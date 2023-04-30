@@ -54,19 +54,31 @@ Conteniendo información sobre 55.823 procesos licitatorios, con una cantidad de
 
 ### Proximos pasos
 
--[x]   Analizar datos, detectar nulos y ver si es posible o necesario volver a raspar esos procesos
+-[x] Analizar datos, detectar nulos y ver si es posible o necesario volver a raspar esos procesos
+
 -[ ] Determinar el objetivo del proyecto. Que quiero predecir, con que exactitud y en función de esto
 definir que tipo de modelos voy a utilizar y con que métricas los voy a evaluar. 
+
 -[ ] Determinar de que forma se van a splitear los datos. Cada proceso licitatorio cuenta con 
 diferentes empresas que presentaron distintas ofertas para la misma licitación. En función de eso
 podría transformar cada fila, obteniendo información sobre quien gano la licitación y quien no.
 De esta forma puedo analizar, características, precios, etc. de ambos tipos de empresa.
+
 -[ ] Entrenar modelos, medir resultados, optimizar hiperparámetros.
+
 -[ ] Una vez que se tenga un MVP podemos volver a utilizar el scraper para obtener nuevos procesos 
 licitatorios y comparar resultados para ver que tan exacto es nuestro modelo.
+
 -[ ] En un futuro, dependiendo de que tipos de resultados arroje el modelo, será posible
 obtener información de licitaciones en proceso, que aún no han sido adjudicadas, para predecir
 el resultado de alguno de los parámetros.
 
 
+---
+El análisis inicial de datos se realizó en el archivo [joinjson.py](joinjson.py) en donde uní todos 
+los json resultantes del scraper. Ya que tuve que dividir su ejecución en varios dias.
+
+Al tener un archivo por día, fue necesario recolectarlos todos en un unico .json, para luego comprobar
+si existían nulos o duplicados. Al parecer, al detener el proceso e iniciarlo al dia siguiente, algunos
+registros se duplicaron. Por lo que fueron eliminados. 
 
