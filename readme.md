@@ -82,3 +82,10 @@ Al tener un archivo por día, fue necesario recolectarlos todos en un unico .jso
 si existían nulos o duplicados. Al parecer, al detener el proceso e iniciarlo al dia siguiente, algunos
 registros se duplicaron. Por lo que fueron eliminados. 
 
+Por otro lado, se detectaron 812 números de procesos que están vacíos. Esto se debe al manejo de errores
+utilizado en el código, en donde si la consulta demoraba más de cierto tiempo, el proceso finalizaba 
+dejando los campos vacíos, pero completando con el número de proceso. Seguramente, se vuelvan a raspar
+los daros relacionados con ellos. 
+
+
+
