@@ -21,5 +21,9 @@ with open('datos.json') as f:
     datos = json.load(f)
 
 df = pd.json_normalize(datos)
-
 df.shape
+df.head()
+df.duplicated(subset=['NumProcesoIndice'], keep=False).sum()
+
+lic = df.copy()
+lic = lic.drop_duplicates(subset=['NumProcesoIndice'], keep='first')
