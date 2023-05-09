@@ -81,7 +81,8 @@ df2.shape
 
 # Al ejecutar estos comandos, quitamos la maxima cantidad de filas de un dataframe mostradas por pantalla
 # por eso, a continuación, se resetea este parámetro a sus valores por defecto.
-
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
 pd.set_option('display.max_rows', None)
 df2.describe(include = 'all').T
 pd.reset_option('display.max_rows')
@@ -107,4 +108,29 @@ tot_lic = df2['Monto'].sum()/1000000
 
 sum_lic_asignadas['porcentaje_del_total'] = sum_lic_asignadas['Monto'].apply(lambda x : (x/tot_lic)*100)
 
-sum_lic_asignadas.sort_values(by = 'Monto',ascending=False).head(50)
+top_100_empresas = sum_lic_asignadas.sort_values(by = 'Monto',ascending=False).head(100)
+
+top_100_empresas.to_csv('top_100_empresas.csv',sep = ';',index = False)
+
+# Vamos a sumar el monto de licitaciones que se han asignado a c/ Nombre de proceso.
+# Pero antes tenemos que transformar los numeros que estan como STR con '.' y ','
+
+sum_lic_asignadas2 = df2.groupby('Nombre descriptivo de proceso')['Monto'].sum().reset_index()
+sum_lic_asignadas2['Monto'] = sum_lic_asignadas2['Monto'].apply(lambda x : x/1000000)
+sum_lic_asignadas2['porcentaje_del_total'] = sum_lic_asignadas2['Monto'].apply(lambda x : (x/tot_lic)*100)
+sum_lic_asignadas2 = sum_lic_asignadas2.sort_values(by = 'Monto',ascending=False)
+top_100_procesos = sum_lic_asignadas2.head(100)
+
+sum_lic_asignadas2.iloc[2][0]
+
+sum_lic_asignadas2.shape
+
+top_100_procesos.to_csv('top_100_procesos.csv',sep = ';',index = False)
+
+
+emp_100 = pd.read_csv('top_100_empresas.csv',sep = ';')
+pro_100 = pd.read_csv('top_100_procesos.csv',sep = ';')
+
+emp_100
+
+pro_100
